@@ -12,8 +12,6 @@ const sp = new SerialPort('/dev/cu.usbmodem1411', {
     baudRate: 115200
 });
 
-
-
 //
 // Init global variables
 //
@@ -93,9 +91,8 @@ ws.on('message', function incoming(data, flags) {
 
     if (data.type === 'ALERT') {
         if (canRunAlert()) {
-            console.log('WS-> ALERT');
+            console.log('WS-> ALERT', data.message);
             sp.write(new Buffer('CMD:ALERT\n'));
-            lastAlertGet = (new Date()).getTime();
         }
     }
 });
@@ -118,6 +115,7 @@ sp.on('open', () => {
 sp.on('data', (data) => {
     if (data.indexOf('{') === 0) {
         sendDataToSocket(data);
+        //console.log(data);
     } else {
         console.log('CMD -> ', data);
     }
