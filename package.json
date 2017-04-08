@@ -10,6 +10,7 @@
   "license": "MIT",
   "dependencies": {
     "serialport": "^4.0.7",
-    "ws": "^2.2.3"
+    "ws": "^2.2.3",
+    "zdrowieton": "^1.4.1"
   }
 }
